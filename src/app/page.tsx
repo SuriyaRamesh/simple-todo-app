@@ -1,9 +1,29 @@
+import { useRouter } from "next/router";
+import { FormEventHandler, useState } from "react";
+
 export const getAllTodos = async () => {
   const res = await fetch(`/tasks`, { cache: "no-store" });
   const todos = await res.json();
   return todos;
 };
 
+const AddTask = () => {
+  const router = useRouter();
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [newTaskValue, setNewTaskValue] = useState<string>("");
+
+  const handleSubmitNewTodo: FormEventHandler<HTMLFormElement> = async (e) => {
+    // e.preventDefault();
+    // await addTodo({
+    //   id: uuidv4(),
+    //   text: newTaskValue,
+    // });
+    // setNewTaskValue("");
+    // setModalOpen(false);
+    // router.refresh();
+  };
+}
+  
 export default async function Home() {
   const tasks = await getAllTodos();
   console.log(tasks);
